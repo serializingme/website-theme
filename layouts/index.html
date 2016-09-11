@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+  <head>
+{{ partial "head.html" . }}
+  </head>
+  <body>
+    <header>
+{{ partial "header.html" . }}
+    </header>
+    <section class="container">
+      <div class="jumbotron">
+        <h1>Latest Posts</h1>
+        <a href="{{ printf "/post/" | absURL }}" class="btn btn-primary">More Posts<span>&nbsp;<i class="fa fa-chevron-right"></i></span></a>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+{{ range first 1 (where .Data.Pages "Type" "post") }}
+            <div class="col-md-12">
+  {{ partial "post-summary.html" . }}
+            </div>
+{{ end }}
+          </div>
+          <div class="row">
+{{ range first 2 (after 1 (where .Data.Pages "Type" "post")) }}
+            <div class="col-md-6">
+  {{ partial "post-summary.html" . }}
+            </div>
+{{ end }}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="well">
+            <h4>Categories</h4>
+            <div class="cloud">
+{{ partial "cloud.html" (dict "context" . "type" "category" "minimum" 1 "maximum" 2.5 ) }}
+            </div>
+          </div>
+          <div class="well">
+            <h4>Tags</h4>
+            <div class="cloud">
+{{ partial "cloud.html" (dict "context" . "type" "tag" "minimum" 1 "maximum" 2.5 ) }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="jumbotron">
+        <h1>Latest Projects</h1>
+        <a href="{{ printf "/project/" | absURL }}" class="btn btn-primary">More Projects<span>&nbsp;<i class="fa fa-chevron-right"></i></span></a>
+      </div>
+      <div class="row">
+{{ range first 2 (where .Data.Pages "Type" "project") }}
+        <div class="col-md-6">
+  {{ partial "project-summary.html" . }}
+        </div>
+{{ end }}
+      </div>
+    </section>
+    <footer>
+{{ partial "footer.html" . }}
+    </footer>
+{{ partial "script.html" . }}
+  </body>
+</html>

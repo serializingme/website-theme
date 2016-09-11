@@ -1,0 +1,17 @@
+<!-- Include the meta tags. -->
+{{ partial "meta.html" . }}
+<!-- Compare the site title and the page title and if they're equal only include one. -->
+{{- if eq .Site.Title .Title -}}
+<title>{{ .Site.Title }}</title>
+{{- else -}}
+<title>{{ .Title }} - {{ .Site.Title }}</title>
+{{- end -}}
+<!-- RSS feeds. -->
+<link href="{{ "index.xml" | absURL }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }} Combined Feed" />
+<link href="{{ "page/index.xml" | absURL }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }} Pages Feed" />
+<link href="{{ "post/index.xml" | absURL }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }} Posts Feed" />
+<link href="{{ "project/index.xml" | absURL }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }} Projects Feed" />
+<!-- Style sheets. -->
+<link href="{{ "css/font-awesome.min.css" | absURL }}" rel="stylesheet" />
+<link href="{{ "css/bootstrap.min.css" | absURL }}" rel="stylesheet" />
+<link href="{{ "css/serializingme.min.css" | absURL }}" rel="stylesheet" />

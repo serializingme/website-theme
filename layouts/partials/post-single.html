@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-8">
+    <article>
+      <header>
+{{- with .Params.banner -}}
+        <img class="img-responsive center-block" src="{{ . }}" alt="{{ $.Title }}" />
+{{- end -}}
+        <h1>{{ .Title }}</h1>
+      </header>
+      <section class="content">
+{{ .Content }}
+      </section>
+      <footer>
+{{ partial "post-footer.html" . }}
+      </footer>
+    </article>
+    <ul class="pager">
+{{- if .PrevInSection -}}
+      <li class="previous">
+        <a href="{{ .PrevInSection.Permalink }}" title="{{ .PrevInSection.Title }}"><span><i class="fa fa-chevron-left"></i>&nbsp;</span>Older</a>
+      </li>
+{{- end -}}
+{{- if .NextInSection -}}
+      <li class="next">
+        <a href="{{ .NextInSection.Permalink }}" title="{{ .NextInSection.Title }}">Newer<span>&nbsp;<i class="fa fa-chevron-right"></i></span></a>
+      </li>
+{{- end -}}
+    </ul>
+  </div>
+  <div class="col-md-4">
+    <div class="well">
+      <h4>Categories</h4>
+      <div class="cloud">
+{{ partial "cloud.html" (dict "context" . "type" "category" "minimum" 1 "maximum" 2.5 ) }}
+      </div>
+    </div>
+    <div class="well">
+      <h4>Tags</h4>
+      <div class="cloud">
+{{ partial "cloud.html" (dict "context" . "type" "tag" "minimum" 1 "maximum" 2.5 ) }}
+      </div>
+    </div>
+  </div>
+</div>

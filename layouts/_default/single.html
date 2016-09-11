@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+  <head>
+{{ partial "head.html" . }}
+  </head>
+  <body>
+    <header>
+{{ partial "header.html" . }}
+    </header>
+    <section class="container">
+{{ if eq .Type "page" }}
+  {{ partial "page-single.html" . }}
+{{ end }}
+{{ if eq .Type "post" }}
+  {{ partial "post-single.html" . }}
+{{ end }}
+{{ if eq .Type "project" }}
+  {{ partial "project-single.html" . }}
+{{ end }}
+    </section>
+    <footer>
+{{ partial "footer.html" . }}
+    </footer>
+{{ partial "script.html" . }}
+  </body>
+</html>

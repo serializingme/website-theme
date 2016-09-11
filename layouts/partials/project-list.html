@@ -1,0 +1,5 @@
+{{- $paginate := .Paginate (where .Data.Pages "Type" "project") -}}
+{{- range $paginate.Pages -}}
+  {{ partial "project-summary.html" . }}
+{{- end -}}
+{{ partial "paginator.html" . }}

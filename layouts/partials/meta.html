@@ -1,0 +1,108 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--
+Default HTML tags.
+-->
+{{ with .Title }}
+<meta name="title" content="{{ . }}" />
+{{ end }}
+{{ if .IsNode }}
+  {{ with .Site.Params.description }}
+<meta name="description" content="{{ . }}"/>
+  {{ end }}
+{{ else }}
+  {{ with .Params.excerpt }}
+<meta name="description" content="{{ . }}"/>
+  {{ end }}
+  {{ with .Params.tags }}
+    {{ $count := len . }}
+    {{ if gt $count 0 }}
+<meta name="keywords" content="{{ range $index, $tag := . }}{{ $tag }}{{ if lt $index (sub $count 1) }}, {{ end }}{{ end }}" />
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ with .Site.Params.author.name }}
+<meta name="author" content="{{ . }}"/>
+{{ end }}
+<!--
+Schema.org tags.
+-->
+{{ with .Title }}
+<meta itemprop="title" content="{{ . }}" />
+{{ end }}
+{{ if .IsNode }}
+  {{ with .Site.Params.description }}
+<meta itemprop="description" content="{{ . }}" />
+  {{ end }}
+{{ else }}
+  {{ with .Params.excerpt }}
+<meta itemprop="description" content="{{ . }}" />
+  {{ end }}
+  {{ with .Params.banner }}
+<meta itemprop="image" content="{{ . | absURL }}" />
+  {{ end }}
+  {{ with .Params.tags }}
+    {{ $count := len . }}
+    {{ if gt $count 0 }}
+<meta itemprop="keywords" content="{{ range $index, $tag := . }}{{ $tag }}{{ if lt $index (sub $count 1) }}, {{ end }}{{ end }}" />
+    {{ end }}
+  {{ end }}
+  {{ with .WordCount }}
+<meta itemprop="wordCount" content="{{ . }}">
+  {{ end }}
+{{ end }}
+<!--
+Open Graph
+-->
+{{ with .Title }}
+<meta property="og:title" content="{{ . }}" />
+{{ end }}
+{{ if .IsNode }}
+<meta property="og:type" content="website" />
+  {{ with .Site.Params.description }}
+<meta property="og:description" content="{{ . }}"/>
+  {{ end }}
+{{ else }}
+  {{ if or (eq .Type "post") (eq .Type "project") }}
+<meta property="og:type" content="article" />
+  {{ else }}
+<meta property="og:type" content="website" />
+  {{ end }}
+  {{ with .Params.excerpt }}
+<meta property="og:description" content="{{ . }}" />
+  {{ end }}
+  {{ with .Params.banner }}
+<meta property="og:image" content="{{ . | absURL }}" />
+  {{ end }}
+{{ end }}
+{{ with .Permalink }}
+<meta property="og:url" content="{{ . }}" />
+{{ end }}
+{{ with .Site.Title }}
+<meta property="og:site_name" content="{{ . }}"/>
+{{ end }}
+<!--
+Twitter cards.
+-->
+<meta name="twitter:card" content="summary" />
+{{ with .Site.Params.author.twitter }}
+<meta name="twitter:site" content="{{ . }}"/>
+{{ end }}
+{{ with .Title }}
+<meta property="twitter:title" content="{{ . }}" />
+{{ end }}
+{{ with .Permalink }}
+<meta name="twitter:url" content="{{ . }}" />
+{{ end }}
+{{ if .IsNode }}
+  {{ with .Site.Params.description }}
+<meta property="twitter:description" content="{{ . }}"/>
+  {{ end }}
+{{ else }}
+  {{ with .Params.excerpt }}
+<meta name="twitter:description" content="{{ . }}" />
+  {{ end }}
+  {{ with .Params.banner }}
+<meta name="twitter:image" content="{{ . | absURL }}" />
+  {{ end }}
+{{ end }}

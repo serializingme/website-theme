@@ -1,0 +1,5 @@
+<span><i class="fa fa-calendar"></i>&nbsp;</span>{{ .Date.Format "January 2, 2006" }}&nbsp;&nbsp;
+<span><i class="fa fa-tags"></i>&nbsp;</span><a href="{{ (printf "tags/%s/" (.Title | urlize)) | absURL }}">Related Posts</a>&nbsp;&nbsp;
+{{- with .Params.repository -}}
+<span><i class="fa fa-code"></i>&nbsp;</span><a href="{{ . }}">Repository</a>
+{{- end -}}

@@ -1,0 +1,56 @@
+{{- .context.Scratch.Set "mintax" 2147483647 -}}
+{{- .context.Scratch.Set "maxtax" -2147483648 -}}
+<!--
+Verify what type of taxonomy should be rendered.
+-->
+{{- if eq .type "tag" -}}
+  {{- .context.Scratch.Set "curtax" .context.Site.Taxonomies.tags -}}
+{{- end -}}
+{{- if eq .type "category" -}}
+  {{- .context.Scratch.Set "curtax" .context.Site.Taxonomies.categories -}}
+{{- end -}}
+<!--
+Calculate the overall maximum and minimum number of articles of a taxonomy.
+-->
+{{- range $name, $taxonony := (.context.Scratch.Get "curtax") -}}
+  {{- $count := (len $taxonony.Pages ) -}}
+
+  {{- if lt $count ($.context.Scratch.Get "mintax") -}}
+    {{- $.context.Scratch.Set "mintax" $count -}}
+  {{- end -}}
+
+  {{- if gt $count ($.context.Scratch.Get "maxtax") -}}
+    {{- $.context.Scratch.Set "maxtax" $count -}}
+  {{- end -}}
+{{- end -}}
+<!--
+Store the values from the scratchpad into variables and calculate the spread
+between the minimum and maximum.
+-->
+{{- $mintax := int (.context.Scratch.Get "mintax") -}}
+{{- $maxtax := int (.context.Scratch.Get "maxtax") -}}
+{{- $sprtax := sub $maxtax $mintax -}}
+<!--
+Get the spread between the minimum and maximum font size.
+-->
+{{- $minfnt := int .minimum -}}
+{{- $maxfnt := int .maximum -}}
+{{- $sprfnt := sub $maxfnt $minfnt -}}
+<!--
+Calculate the step value for the font (multiplications are there to force the
+result of the division to be a float since the result of a division of two
+integers is always an integer).
+-->
+{{- $stp := div (mul $sprfnt 1.0) (mul $sprtax 1.0) -}}
+<!--
+Go through all the taxonomy entries and output the link.
+-->
+{{- range $name, $taxonony := (.context.Scratch.Get "curtax") -}}
+  {{- if eq $.type "tag" -}}
+    {{- $.context.Scratch.Set "cururl" (printf "tags/%s/" ($name | urlize)) -}}
+  {{- end -}}
+  {{- if eq $.type "category" -}}
+    {{- $.context.Scratch.Set "cururl" (printf "categories/%s/" ($name | urlize)) -}}
+  {{- end -}}
+<a style="font-size: {{ add $minfnt (mul (sub (len $taxonony.Pages) $mintax) $stp) }}em" href="{{ $.context.Scratch.Get "cururl" | absURL }}" title="{{ printf "%d posts" (len $taxonony.Pages) }}">{{ $name }}</a>
+{{ end }}

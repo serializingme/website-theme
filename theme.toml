@@ -1,0 +1,12 @@
+name = "SerializingMe"
+license = "GPLv3"
+licenselink = "https://github.com/serializingme/website-theme/blob/master/LICENSE.md"
+description = "My website Hugo theme."
+homepage = "https://www.serializing.me/"
+tags = ["bootstrap", "jquery", "font-awesome", "responsive"]
+features = ["project", "blog", "tag cloud", "analytics", "advertisement", "social"]
+min_version = 0.16
+
+[author]
+name = "Duarte Silva"
+homepage = "https://www.serializing.me/"
