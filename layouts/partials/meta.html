@@ -89,14 +89,14 @@ Twitter cards.
 <meta name="twitter:site" content="{{ . }}"/>
 {{ end }}
 {{ with .Title }}
-<meta property="twitter:title" content="{{ . }}" />
+<meta name="twitter:title" content="{{ . }}" />
 {{ end }}
 {{ with .Permalink }}
 <meta name="twitter:url" content="{{ . }}" />
 {{ end }}
 {{ if .IsNode }}
   {{ with .Site.Params.description }}
-<meta property="twitter:description" content="{{ . }}"/>
+<meta name="twitter:description" content="{{ . }}"/>
   {{ end }}
 {{ else }}
   {{ with .Params.excerpt }}
