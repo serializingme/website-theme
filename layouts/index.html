@@ -10,37 +10,22 @@
     <section class="container">
       <h1>Latest Posts</h1>
       <div class="row">
-        <div class="col-md-8">
-          <div class="row">
-{{ range first 1 (where .Data.Pages "Type" "post") }}
-            <div class="col-md-12">
+{{ range first 2 (where .Data.Pages "Type" "post") }}
+        <div class="col-md-6">
   {{ partial "post-summary.html" . }}
-            </div>
-{{ end }}
-          </div>
-          <div class="row">
-{{ range first 2 (after 1 (where .Data.Pages "Type" "post")) }}
-            <div class="col-md-6">
-  {{ partial "post-summary.html" . }}
-            </div>
-{{ end }}
-          </div>
         </div>
-        <div class="col-md-4">
-          <div class="well">
-            <h4>Categories</h4>
-            <div class="cloud">
-{{ partial "cloud.html" (dict "context" . "type" "category" "minimum" 1 "maximum" 2.5 ) }}
-            </div>
-          </div>
-          <div class="well">
-            <h4>Tags</h4>
-            <div class="cloud">
-{{ partial "cloud.html" (dict "context" . "type" "tag" "minimum" 1 "maximum" 2.5 ) }}
-            </div>
-          </div>
-        </div>
+{{ end }}
       </div>
+{{ $list := (where .Data.Pages "Type" "post") }}
+{{- if gt (len $list) 5 -}}
+      <div class="row">
+  {{ range first 3 (after 2 $list) }}
+        <div class="col-md-4">
+    {{ partial "post-summary.html" . }}
+        </div>
+  {{ end }}
+      </div>
+{{ end }}
       <h1>Latest Projects</h1>
       <div class="row">
 {{ range first 2 (where .Data.Pages "Type" "project") }}
@@ -49,6 +34,16 @@
         </div>
 {{ end }}
       </div>
+{{ $list := (where .Data.Pages "Type" "project") }}
+{{- if gt (len $list) 5 -}}
+      <div class="row">
+  {{ range first 3 (after 2 $list) }}
+        <div class="col-md-4">
+    {{ partial "post-summary.html" . }}
+        </div>
+  {{ end }}
+      </div>
+{{ end }}
     </section>
     <footer>
 {{ partial "footer.html" . }}
