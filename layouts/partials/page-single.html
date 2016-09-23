@@ -2,6 +2,9 @@
   <div class="col-md-8 col-md-offset-2">
     <article>
       <header>
+{{- with .Params.banner -}}
+        <img class="img-responsive center-block" src="{{ . }}" alt="{{ $.Title }}" />
+{{- end -}}
         <h1>{{ .Title }}</h1>
       </header>
       <section class="content">
