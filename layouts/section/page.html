@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+  <head>
+{{ partial "head.html" . }}
+  </head>
+  <body>
+    <header>
+{{ partial "header.html" . }}
+    </header>
+    <section class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+{{ partial "page-list.html" . }}
+        </div>
+      </div>
+    </section>
+    <footer>
+{{ partial "footer.html" . }}
+    </footer>
+{{ partial "script.html" . }}
+  </body>
+</html>

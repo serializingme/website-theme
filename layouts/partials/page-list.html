@@ -1,0 +1,15 @@
+{{- $paginate := .Paginate (where .Data.Pages "Type" "page") -}}
+{{- range $paginate.Pages -}}
+    <article>
+      <header>
+{{- if isset .Params "banner" -}}
+        <a href="{{ .Permalink }}"><img class="img-responsive center-block" src="{{ . }}" alt="{{ $.Title }}" />
+{{- end -}}
+        <a href="{{ .Permalink }}"><h1>{{ .Title }}</h1></a>
+      </header>
+      <section class="content">
+{{ .Content }}
+      </section>
+    </article>
+{{- end -}}
+{{ partial "paginator.html" . }}
