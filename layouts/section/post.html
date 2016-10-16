@@ -8,25 +8,7 @@
 {{ partial "header.html" . }}
     </header>
     <section class="container">
-      <div class="row">
-        <div class="col-md-8">
-{{ partial "post-list.html" . }}
-        </div>
-        <div class="col-md-4">
-          <div class="well">
-            <h4>Categories</h4>
-            <div class="cloud">
-{{ partial "cloud.html" (dict "context" . "type" "category" "minimum" 1 "maximum" 2.5 ) }}
-            </div>
-          </div>
-          <div class="well">
-            <h4>Tags</h4>
-            <div class="cloud">
-{{ partial "cloud.html" (dict "context" . "type" "tag" "minimum" 1 "maximum" 2.5 ) }}
-            </div>
-          </div>
-        </div>
-      </div>
+{{ partial "post-list-cloud.html" . }}
     </section>
     <footer>
 {{ partial "footer.html" . }}
