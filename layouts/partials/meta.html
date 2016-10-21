@@ -4,8 +4,10 @@
 <!--
 Default HTML tags.
 -->
-{{ with .Title }}
-<meta name="title" content="{{ . }}" />
+{{ if eq .Site.Title .Title }}
+<meta property="title" content="{{ .Site.Title }}" />
+{{ else }}
+<meta property="title" content="{{ .Title }} - {{ .Site.Title }}" />
 {{ end }}
 {{ if .IsNode }}
   {{ with .Site.Params.description }}
@@ -28,8 +30,10 @@ Default HTML tags.
 <!--
 Schema.org tags.
 -->
-{{ with .Title }}
-<meta itemprop="title" content="{{ . }}" />
+{{ if eq .Site.Title .Title }}
+<meta itemprop="title" content="{{ .Site.Title }}" />
+{{ else }}
+<meta itemprop="title" content="{{ .Title }} - {{ .Site.Title }}" />
 {{ end }}
 {{ if .IsNode }}
   {{ with .Site.Params.description }}
@@ -55,8 +59,10 @@ Schema.org tags.
 <!--
 Open Graph
 -->
-{{ with .Title }}
-<meta property="og:title" content="{{ . }}" />
+{{ if eq .Site.Title .Title }}
+<meta property="og:title" content="{{ .Site.Title }}" />
+{{ else }}
+<meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}" />
 {{ end }}
 {{ if .IsNode }}
 <meta property="og:type" content="website" />
@@ -97,8 +103,10 @@ Twitter cards.
 {{ with .Site.Params.author.twitter }}
 <meta name="twitter:site" content="{{ . }}"/>
 {{ end }}
-{{ with .Title }}
-<meta name="twitter:title" content="{{ . }}" />
+{{ if eq .Site.Title .Title }}
+<meta name="twitter:title" content="{{ .Site.Title }}" />
+{{ else }}
+<meta name="twitter:title" content="{{ .Title }} - {{ .Site.Title }}" />
 {{ end }}
 {{ with .Permalink }}
 <meta name="twitter:url" content="{{ . }}" />
