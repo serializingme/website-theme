@@ -1,5 +1,5 @@
 {{- $paginate := .Paginate (where .Data.Pages "Type" "post") -}}
 {{- range $paginate.Pages -}}
-  {{ partial "post-summary.html" . }}
+  {{ partial "post-summary.html" (dict "context" . "feature" true ) }}
 {{- end -}}
 {{ partial "paginator.html" . }}

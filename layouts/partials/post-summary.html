@@ -1,22 +1,22 @@
 <article>
   <header>
-{{- if isset .Params "banner" -}}
-    <a href="{{ .Permalink }}"><img class="img-responsive center-block" src="{{ .Params.banner }}" alt="{{ .Title }}"></a>
+{{- if and (isset .context.Params "banner") (.feature) -}}
+    <a href="{{ .context.Permalink }}"><img class="img-responsive center-block" src="{{ .context.Params.banner }}" alt="{{ .context.Title }}"></a>
 {{- end -}}
-    <a href="{{ .Permalink }}"><h1>{{ .Title }}</h1></a>
+    <a href="{{ .context.Permalink }}"><h1>{{ .context.Title }}</h1></a>
   </header>
   <section class="content">
-{{- if and (isset .Params "format") (or (eq .Params.format "quote") (eq .Params.format "status")) -}}
-  {{ .Content }}
+{{- if and (isset .context.Params "format") (or (eq .context.Params.format "quote") (eq .context.Params.format "status")) -}}
+  {{ .context.Content }}
 {{- else -}}
-  {{ .Summary }}
-  {{- if .Truncated -}}
-    <a class="btn btn-primary" href="{{ .Permalink }}">Continue Reading<span>&nbsp;<i class="fa fa-chevron-right"></i></span></a>
+  {{ .context.Summary }}
+  {{- if .context.Truncated -}}
+    <a class="btn btn-primary" href="{{ .context.Permalink }}">Continue Reading<span>&nbsp;<i class="fa fa-chevron-right"></i></span></a>
   {{- end -}}
 {{- end -}}
   </section>
   <footer>
-{{ partial "post-footer.html" . }}
+{{ partial "post-footer.html" .context }}
   </footer>
 </article>
 
