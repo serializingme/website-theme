@@ -8,42 +8,44 @@
 {{ partial "header.html" . }}
     </header>
     <section class="container">
-      <h1>Latest Posts</h1>
       <div class="row">
-{{ range first 2 (where .Data.Pages "Type" "post") }}
-        <div class="col-md-6">
-  {{ partial "post-summary.html" . }}
-        </div>
-{{ end }}
-      </div>
-{{ $list := (where .Data.Pages "Type" "post") }}
-{{- if gt (len $list) 2 -}}
-      <div class="row">
-  {{ range first 3 (after 2 $list) }}
         <div class="col-md-4">
-    {{ partial "post-summary.html" . }}
+          <h1>Latest Posts</h1>
         </div>
-  {{ end }}
-      </div>
-{{ end }}
-      <h1>Latest Projects</h1>
-      <div class="row">
-{{ range first 2 (where .Data.Pages "Type" "project") }}
-        <div class="col-md-6">
-  {{ partial "project-summary.html" . }}
+        <div class="col-md-8">
+        {{ range first 1 (where .Data.Pages "Type" "post") }}
+          {{ partial "post-summary.html" (dict "context" . "feature" true ) }}
+        {{ end }}
+        {{ range first 3 (after 1 (where .Data.Pages "Type" "post")) }}
+          {{ partial "post-summary.html" (dict "context" . "feature" false ) }}
+        {{ end }}
         </div>
-{{ end }}
       </div>
-{{ $list := (where .Data.Pages "Type" "project") }}
-{{- if gt (len $list) 2 -}}
       <div class="row">
-  {{ range first 3 (after 2 $list) }}
+        <div class="col-md-offset-4 col-md-8">
+          <div class="btn-group btn-group-justified">
+            <a class="btn btn-success" href="{{ .Site.Params.page.post }}">More Posts<span>&nbsp;<i class="fa fa-chevron-right"></i></span></a>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
         <div class="col-md-4">
-    {{ partial "post-summary.html" . }}
+          <h1>Latest Projects</h1>
         </div>
-  {{ end }}
+        {{ range first 2 (where .Data.Pages "Type" "project") }}
+        <div class="col-md-4">
+          {{ partial "project-summary.html" . }}
+        </div>
+        {{ end }}
       </div>
-{{ end }}
+      <div class="row">
+        <div class="col-md-offset-4 col-md-8">
+          <div clasS="btn-group btn-group-justified">
+            <a class="btn btn-success" href="{{ .Site.Params.page.project }}">More Projects<span>&nbsp;<i class="fa fa-chevron-right"></i></span></a>
+          </div>
+        </div>
+      </div>
     </section>
     <footer>
 {{ partial "footer.html" . }}
