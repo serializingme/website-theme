@@ -3,6 +3,6 @@ $(function() {
     $(this).append('<span>&nbsp;<i class="fa fa-external-link"></i></span>');
   });
   $('a[href^="mailto:"]').each(function() {
-    this.href = this.href.replace('arroba', '@').replace(/ponto/g, '.');
+    this.href = this.href.replace(/arroba/g, '@').replace(/ponto/g, '.');
   });
 });

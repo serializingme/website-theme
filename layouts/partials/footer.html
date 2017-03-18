@@ -14,7 +14,7 @@
 {{ end }}
       </ul>
       <ul class="list-inline text-center footer-links-bottom">
-{{ range .Site.Params.page }}
+{{ range .Site.Params.page.footer }}
         <li>
           <span class="fa-lg"><i class="fa {{ .icon }}"></i>&nbsp;</span><a class="footer-link" href="{{ .url }}" title="{{ .name }}">{{ .name }}</a>
         </li>
