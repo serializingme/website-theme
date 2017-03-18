@@ -2,12 +2,14 @@
 {{- with .Params.categories -}}
   {{- $count := len . -}}
   {{- if gt $count 0 -}}
+<br/>
 <span><i class="fa fa-folder-open"></i>&nbsp;</span>{{- range $index, $category := . -}}<a href="{{ (printf "categories/%s/" ($category | urlize)) | absURL }}">{{ $category }}</a>{{- if lt $index (sub $count 1) -}},&nbsp;{{- end -}}{{- end -}}&nbsp;&nbsp;
   {{- end -}}
 {{- end -}}
 {{- with .Params.tags -}}
   {{- $count := len . -}}
   {{- if gt $count 0 -}}
+<br/>
 <span><i class="fa fa-tag"></i>&nbsp;</span>{{- range $index, $tag := . -}}<a href="{{ (printf "tags/%s/" ($tag | urlize)) | absURL }}">{{ $tag }}</a>{{- if lt $index (sub $count 1) -}},&nbsp;{{- end -}}{{- end -}}
   {{- end -}}
 {{- end -}}
