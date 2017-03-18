@@ -202,3 +202,10 @@ blockquote > footer {
 .fa-tube:before {
   content: "\f167"
 }
+
+/*
+ * Content separator.
+ */
+.hr-not-found {
+    margin-top:60px
+}
