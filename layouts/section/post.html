@@ -8,13 +8,38 @@
 {{ partial "header.html" . }}
     </header>
     <section class="container">
-{{ partial "post-list-cloud.html" . }}
+      <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+          <h1 class="my-4">Posts</h1>
+{{ partial "post-list.html" . }}
+        </div>
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4 my-4">
+          <!-- Categories Widget -->
+          <div class="card">
+            <h5 class="card-header">Categories</h5>
+            <div class="card-body">
+              <div class="cloud">
+{{ partial "cloud.html" (dict "context" . "type" "category" "minimum" 1 "maximum" 2.4 ) }}
+              </div>
+            </div>
+          </div>
+          <!-- Tags Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Tags</h5>
+            <div class="card-body">
+              <div class="cloud">
+{{ partial "cloud.html" (dict "context" . "type" "tag" "minimum" 1 "maximum" 2.4 ) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-    <footer>
+    <footer class="mt-4 bg-dark">
 {{ partial "footer.html" . }}
     </footer>
 {{ partial "script.html" . }}
   </body>
 </html>
-
-

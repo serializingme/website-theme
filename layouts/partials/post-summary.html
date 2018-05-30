@@ -1,22 +1,26 @@
-<article>
-  <header>
+<!-- Blog Post -->
+<div class="card my-4">
 {{- if and (isset .context.Params "banner") (.feature) -}}
-    <a href="{{ .context.Permalink }}"><img class="img-responsive center-block" src="{{ .context.Params.banner }}" alt="{{ .context.Title }}"></a>
+  <a href="{{ .context.Permalink }}"><img class="card-img-top" src="{{ .context.Params.banner }}" alt="{{ .context.Title }}"></a>
 {{- end -}}
-    <a href="{{ .context.Permalink }}"><h1>{{ .context.Title }}</h1></a>
-  </header>
-  <section class="content">
+  <div class="card-body">
+    <h2 class="card-title">
+        {{ .context.Title }}
+    </h2>
 {{- if and (isset .context.Params "format") (or (eq .context.Params.format "quote") (eq .context.Params.format "status")) -}}
+    <div class="text-justify">
   {{ .context.Content }}
+    </div>
 {{- else -}}
+    <div class="text-justify">
   {{ .context.Summary }}
   {{- if .context.Truncated -}}
-    <a class="btn btn-primary" href="{{ .context.Permalink }}">Continue Reading<span>&nbsp;<i class="fa fa-chevron-right"></i></span></a>
+      <a class="btn btn-primary" href="{{ .context.Permalink }}">Read More<span>&nbsp;<i class="fas fa-chevron-right"></i></span></a>
   {{- end -}}
+    </div>
 {{- end -}}
-  </section>
-  <footer>
+  </div>
+  <div class="card-footer">
 {{ partial "post-footer.html" .context }}
-  </footer>
-</article>
-
+  </div>
+</div>

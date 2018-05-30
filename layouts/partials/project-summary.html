@@ -1,18 +1,20 @@
-<article>
-  <header>
+<!-- Blog Post -->
+<div class="card my-4">
 {{- if isset .Params "banner" -}}
-    <a href="{{ .Permalink }}"><img class="img-responsive center-block" src="{{ .Params.banner }}" alt="{{ .Title }}"></a>
+  <a href="{{ .Permalink }}"><img class="card-img-top" src="{{ .Params.banner }}" alt="{{ .Title }}"></a>
 {{- end -}}
-    <a href="{{ .Permalink }}"><h1>{{ .Title }}</h1></a>
-  </header>
-  <section class="content">
+  <div class="card-body">
+    <h2 class="card-title">
+{{ .Title }}
+    </h2>
+    <div class="text-justify">
 {{ .Summary }}
 {{- if .Truncated -}}
-    <a class="btn btn-primary" href="{{ .Permalink }}">More Information<span>&nbsp;<i class="fa fa-chevron-right"></i></span></a>
-{{ end }}
-  </section>
-  <footer>
+      <a class="btn btn-primary" href="{{ .Permalink }}">More Information<span>&nbsp;<i class="fas fa-chevron-right"></i></span></a>
+{{- end -}}
+    </div>
+  </div>
+  <div class="card-footer">
 {{ partial "project-footer.html" . }}
-  </footer>
-</article>
-
+  </div>
+</div>

@@ -1,26 +1,26 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <ul class="list-inline text-center footer-links-top">
+  <div class="row text-center">
+  <div class="col-12 col-md my-4">
+    <ul class="list-inline">
 {{ range .Site.Params.author.social }}
-        <li>
-          <a class="footer-link" href="{{ .url }}" title="{{ .name }}">
-            <span class="fa-stack fa-lg">
-              <i class="fa fa-square fa-stack-2x"></i>
-              <i class="fa {{ .icon }} fa-stack-1x fa-inverse"></i>
-            </span>
-          </a>
-        </li>
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="{{ .url }}" title="{{ .name }}">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="{{ .icon }} fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
 {{ end }}
-      </ul>
-      <ul class="list-inline text-center footer-links-bottom">
+    </ul>
+      <ul class="list-inline">
 {{ range .Site.Params.page.footer }}
-        <li>
-          <span class="fa-lg"><i class="fa {{ .icon }}"></i>&nbsp;</span><a class="footer-link" href="{{ .url }}" title="{{ .name }}">{{ .name }}</a>
-        </li>
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="{{ .icon }}"></i>&nbsp;</span><a class="footer-link text-light" href="{{ .url }}" title="{{ .name }}">{{ .name }}</a>
+    </li>
 {{ end }}
-      </ul>
-      <p class="text-muted text-center footer-copyright">&copy;&nbsp;{{ .Site.LastChange.Format "2006" }}&nbsp;{{ .Site.Params.author.name }}</p>
-    </div>
+  </ul>
+  <small class="d-block mb-3 text-muted">&copy;&nbsp;{{ .Site.LastChange.Format "2006" }}&nbsp;{{ .Site.Params.author.name }}</small>
   </div>
+</div>
 </div>
