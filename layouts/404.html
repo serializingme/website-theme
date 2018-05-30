@@ -9,36 +9,32 @@
     </header>
     <section class="container">
       <div class="text-center">
-        <span class="fa-10x"><i class="fa fa-bolt"></i></span>
+        <span class="fa-10x"><i class="fas fa-bolt"></i></span>
         <h1>This page is so fast that you just missed it!</h1>
       </div>
       <hr class="hr-not-found" />
       <div class="row">
-        {{ range first 1 (where .Data.Pages "Type" "post") }}
+{{ range first 1 (where .Data.Pages "Type" "post") }}
         <div class="col-md-6">
-          {{ partial "post-summary.html" (dict "context" . "feature" true ) }}
+  {{ partial "post-summary.html" (dict "context" . "feature" true ) }}
         </div>
-        {{ end }}
-        {{ range first 1 (where .Data.Pages "Type" "project") }}
+{{ end }}
+{{ range first 1 (where .Data.Pages "Type" "project") }}
         <div class="col-md-6">
-          {{ partial "project-summary.html" . }}
+  {{ partial "project-summary.html" . }}
         </div>
-        {{ end }}
+{{ end }}
       </div>
       <div class="row">
         <div class="col-md-6">
-          <div class="btn-group btn-group-justified">
-            <a class="btn btn-success" href="{{ .Site.Params.page.post }}">More Posts<span>&nbsp;<i class="fa fa-chevron-right"></i></span></a>
-          </div>
+          <a class="btn btn-success btn-block" href="{{ .Site.Params.page.post }}" role="button">More Posts<span>&nbsp;<i class="fas fa-chevron-right"></i></span></a>
         </div>
         <div class="col-md-6">
-          <div clasS="btn-group btn-group-justified">
-            <a class="btn btn-success" href="{{ .Site.Params.page.project }}">More Projects<span>&nbsp;<i class="fa fa-chevron-right"></i></span></a>
-          </div>
+          <a class="btn btn-success btn-block" href="{{ .Site.Params.page.project }}" role="button">More Projects<span>&nbsp;<i class="fas fa-chevron-right"></i></span></a>
         </div>
       </div>
     </section>
-    <footer>
+    <footer class="mt-4 bg-dark">
 {{ partial "footer.html" . }}
     </footer>
 {{ partial "script.html" . }}

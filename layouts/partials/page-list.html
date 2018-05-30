@@ -1,15 +1,18 @@
 {{- $paginate := .Paginate (where .Data.Pages "Type" "page") -}}
 {{- range $paginate.Pages -}}
-    <article>
-      <header>
+<!-- Page -->
+<div class="card my-4">
 {{- if isset .Params "banner" -}}
-        <a href="{{ .Permalink }}"><img class="img-responsive center-block" src="{{ . }}" alt="{{ $.Title }}" />
+  <a href="{{ .Permalink }}"><img class="card-img-top" src="{{ .Params.banner }}" alt="{{ $.Title }}"></a>
 {{- end -}}
-        <a href="{{ .Permalink }}"><h1>{{ .Title }}</h1></a>
-      </header>
-      <section class="content">
+  <div class="card-body">
+    <h2 class="card-title">
+{{ .Title }}
+    </h2>
+    <div class="text-justify">
 {{ .Content }}
-      </section>
-    </article>
+    </div>
+  </div>
+</div>
 {{- end -}}
 {{ partial "paginator.html" . }}

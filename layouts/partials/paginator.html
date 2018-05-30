@@ -1,14 +1,20 @@
-{{- if or (.Paginator.HasPrev) (.Paginator.HasNext) -}}
-<ul class="pager">
-  {{- if .Paginator.HasNext -}}
-  <li class="previous">
-    <a href="{{ (printf "%spage/%d/" .URL .Paginator.Next.PageNumber) | absURL }}"><span><i class="fa fa-chevron-left"></i>&nbsp;</span>Older</a>
+<ul class="pagination justify-content-center mb-4">
+{{- if .Paginator.HasPrev -}}
+  <li class="page-item">
+    <a href="{{ (printf "%spage/%d/" .URL .Paginator.Prev.PageNumber) | absURL }}" class="page-link"><span><i class="fas fa-chevron-left"></i>&nbsp;</span>Newer</a>
   </li>
-  {{- end -}}
-  {{- if .Paginator.HasPrev -}}
-  <li class="next">
-    <a href="{{ (printf "%spage/%d/" .URL .Paginator.Prev.PageNumber) | absURL }}">Newer<span>&nbsp;<i class="fa fa-chevron-right"></i></span></a>
+{{- else -}}
+  <li class="page-item disabled">
+    <a href="/" class="page-link"><span><i class="fas fa-chevron-left"></i>&nbsp;</span>Newer</a>
   </li>
-  {{- end -}}
-</ul>
 {{- end -}}
+{{- if .Paginator.HasNext -}}
+  <li class="page-item">
+    <a href="{{ (printf "%spage/%d/" .URL .Paginator.Next.PageNumber) | absURL }}" class="page-link">Older<span>&nbsp;<i class="fas fa-chevron-right"></i></span></a>
+  </li>
+{{- else -}}
+  <li class="page-item disabled">
+    <a href="/" class="page-link">Older<span>&nbsp;<i class="fas fa-chevron-right"></i></span></a>
+  </li>
+{{- end -}}
+</ul>

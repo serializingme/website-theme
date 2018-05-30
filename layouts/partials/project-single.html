@@ -1,29 +1,41 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <article>
-      <header>
+  <!-- Post Content Column -->
+  <div class="col-md-8 offset-md-2">
+    <!-- Blog Post -->
+    <div class="card mb-4 my-4">
 {{- with .Params.banner -}}
-        <img class="img-responsive center-block" src="{{ . }}" alt="{{ $.Title }}" />
+      <img class="card-img-top" src="{{ . }}" alt="{{ $.Title }}" />
 {{- end -}}
-        <h1>{{ .Title }}</h1>
-      </header>
-      <section class="content">
+      <div class="card-body">
+        <h2 class="card-title">
+{{ .Title }}
+        </h2>
+        <div class="text-justify">
 {{ .Content }}
-      </section>
-      <footer>
+        </div>
+      </div>
+      <div class="card-footer">
 {{ partial "project-footer.html" . }}
-      </footer>
-    </article>
-    <ul class="pager">
-{{- if .PrevInSection -}}
-      <li class="previous">
-        <a href="{{ .PrevInSection.Permalink }}" title="{{ .PrevInSection.Title }}"><span><i class="fa fa-chevron-left"></i>&nbsp;</span>Older</a>
+      </div>
+    </div>
+    <ul class="pagination justify-content-center mb-4">
+{{- if .NextInSection -}}
+      <li class="page-item">
+        <a href="{{ .NextInSection.Permalink }}" title="{{ .NextInSection.Title }}" class="page-link"><span><i class="fas fa-chevron-left"></i>&nbsp;</span>Newer</a>
+      </li>
+{{- else -}}
+      <li class="page-item disabled">
+        <a href="/" class="page-link"><span><i class="fas fa-chevron-left"></i>&nbsp;</span>Newer</a>
       </li>
 {{- end -}}
-{{- if .NextInSection -}}
-      <li class="next">
-        <a href="{{ .NextInSection.Permalink }}" title="{{ .NextInSection.Title }}">Newer<span>&nbsp;<i class="fa fa-chevron-right"></i></span></a>
-      </li>
+{{- if .PrevInSection -}}
+  <li class="page-item">
+    <a href="{{ .PrevInSection.Permalink }}" title="{{ .PrevInSection.Title }}" class="page-link">Older<span>&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;</span></a>
+  </li>
+{{- else -}}
+  <li class="page-item disabled">
+    <a href="/" class="page-link">Older<span>&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;</span></a>
+  </li>
 {{- end -}}
     </ul>
   </div>
