@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#" class="bg-dark">
+  <head>
+{{ partial "head.html" . }}
+  </head>
+  <body>
+    <header>
+{{ partial "header.html" . }}
+    </header>
+    <section class="container">
+{{ if eq .Type "categories" }}
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="my-4">Categories</h1>
+    {{ partial "cloud.html" (dict "context" . "type" "category" "minimum" 1 "maximum" 2.4 ) }}
+        </div>
+      </div>
+{{ end }}
+{{ if eq .Type "tags" }}
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="my-4">Tags</h1>
+    {{ partial "cloud.html" (dict "context" . "type" "tag" "minimum" 1 "maximum" 2.4 ) }}
+        </div>
+      </div>
+{{ end }}
+    </section>
+    <footer class="mt-4 bg-dark">
+{{ partial "footer.html" . }}
+    </footer>
+{{ partial "script.html" . }}
+  </body>
+</html>
