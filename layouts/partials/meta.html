@@ -139,6 +139,7 @@ Twitter cards.
 {{ end }}
 {{ with .Site.Params.author.twitter }}
 <meta name="twitter:site" content="{{ . }}" />
+<meta name="twitter:creator" content="{{ . }}" />
 {{ end }}
 {{ if eq .Site.Title .Title }}
 <meta name="twitter:title" content="{{ .Site.Title }}" />
