@@ -15,9 +15,17 @@ Default HTML tags.
   {{ end }}
 {{ else if .IsNode }}
   {{ if eq .Type "tags" }}
+    {{ if eq .Kind "taxonomy" }}
+<meta name="description" content="List of all published blog posts tagged with {{ .Title }}" />
+    {{ else }}
 <meta name="description" content="List of all tags used in published blog posts" />
+    {{ end }}
   {{ else if eq .Type "categories" }}
+    {{ if eq .Kind "taxonomy" }}
+<meta name="description" content="List of all published blog posts archived under {{ .Title }}" />
+    {{ else }}
 <meta name="description" content="List of all categories used in published posts" />
+    {{ end }}
   {{ else if eq .Type "project" }}
 <meta name="description" content="List of all published projects and respective metadata" />
   {{ else if eq .Type "page" }}
@@ -53,9 +61,17 @@ Schema.org tags.
   {{ end }}
 {{ else if .IsNode }}
   {{ if eq .Type "tags" }}
+    {{ if eq .Kind "taxonomy" }}
+<meta itemprop="description" content="List of all published blog posts tagged with {{ .Title }}" />
+    {{ else }}
 <meta itemprop="description" content="List of all tags used in published blog posts" />
+    {{ end }}
   {{ else if eq .Type "categories" }}
+    {{ if eq .Kind "taxonomy" }}
+<meta itemprop="description" content="List of all published blog posts archived under {{ .Title }}" />
+    {{ else }}
 <meta itemprop="description" content="List of all categories used in published posts" />
+    {{ end }}
   {{ else if eq .Type "project" }}
 <meta itemprop="description" content="List of all published projects and respective metadata" />
   {{ else if eq .Type "page" }}
@@ -96,9 +112,17 @@ Open Graph
 {{ else if .IsNode }}
 <meta property="og:type" content="website" />
   {{ if eq .Type "tags" }}
+    {{ if eq .Kind "taxonomy" }}
+<meta property="og:description" content="List of all published blog posts tagged with {{ .Title }}" />
+    {{ else }}
 <meta property="og:description" content="List of all tags used in published blog posts" />
+    {{ end }}
   {{ else if eq .Type "categories" }}
+    {{ if eq .Kind "taxonomy" }}
+<meta property="og:description" content="List of all published blog posts archived under {{ .Title }}" />
+    {{ else }}
 <meta property="og:description" content="List of all categories used in published posts" />
+    {{ end }}
   {{ else if eq .Type "project" }}
 <meta property="og:description" content="List of all published projects and respective metadata" />
   {{ else if eq .Type "page" }}
@@ -155,9 +179,17 @@ Twitter cards.
   {{ end }}
 {{ else if .IsNode }}
   {{ if eq .Type "tags" }}
+    {{ if eq .Kind "taxonomy" }}
+<meta name="twitter:description" content="List of all published blog posts tagged with {{ .Title }}" />
+    {{ else }}
 <meta name="twitter:description" content="List of all tags used in published blog posts" />
+    {{ end }}
   {{ else if eq .Type "categories" }}
+    {{ if eq .Kind "taxonomy" }}
+<meta name="twitter:description" content="List of all published blog posts archived under {{ .Title }}" />
+    {{ else }}
 <meta name="twitter:description" content="List of all categories used in published posts" />
+    {{ end }}
   {{ else if eq .Type "project" }}
 <meta name="twitter:description" content="List of all published projects and respective metadata" />
   {{ else if eq .Type "page" }}
