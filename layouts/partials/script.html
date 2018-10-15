@@ -28,7 +28,7 @@
   });
 </script>
 {{- end -}}
-{{ with .Site.Params.analytics }}
+{{- with .Site.Params.analytics -}}
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -36,8 +36,8 @@
   gtag('js', new Date());
   gtag('config', '{{ . }}');
 </script>
-{{ end }}
-{{ with .Site.Params.adsense }}
+{{- end -}}
+{{- with .Site.Params.adsense -}}
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
@@ -45,4 +45,4 @@
     enable_page_level_ads: true
   });
 </script>
-{{ end }}
+{{- end -}}
