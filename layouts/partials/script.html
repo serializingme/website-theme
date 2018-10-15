@@ -3,7 +3,31 @@
 <script src="{{ "js/fa-solid.min.js" | absURL }}"></script>
 <script src="{{ "js/fa-brands.min.js" | absURL }}"></script>
 <script src="{{ "js/fontawesome.min.js" | absURL }}"></script>
+<script src="{{ "js/vis.min.js" | absURL }}"></script>
+<script src="{{ "js/vis-timeline-graph2d.min.js" | absURL }}"></script>
 <script src="{{ "js/serializingme.min.js" | absURL }}"></script>
+{{- with .Params.timeline -}}
+<script>
+  $(function() {
+    var items = new vis.DataSet([
+  {{- range . -}}
+    {{- if ne .type "background" -}}
+      { id: '{{ .id }}', start: '{{ .start }}', content: '{{ .title }}' },
+    {{- else -}}
+      {id: '{{ .id }}', start: '{{ .start }}', end: '{{ .end }}', content: '{{ .title }}', type: '{{ .type }}', className: '{{ .className }}'},
+    {{- end -}}
+  {{- end -}}
+    ]);
+
+    var container = document.getElementById('visualization');
+    var options = {
+      editable: false
+    };
+
+    var timeline = new vis.Timeline(container, items, options);
+  });
+</script>
+{{- end -}}
 {{ with .Site.Params.analytics }}
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
 <script>
