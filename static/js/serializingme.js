@@ -1,5 +1,5 @@
 $(function() {
-  $('a:not([href^="http://'+location.hostname+'"],[href^="https://'+location.hostname+'"],[href^="/"],[href^="mailto:"],[class*="footer-link"])').each(function() {
+  $('a:not([href^="'+location.origin+'"],[href^="/"],[href^="mailto:"],[href^="bitcoin:"],[href^="monero:"],[class*="footer-link"])').each(function() {
     $(this).append('<span>&nbsp;<i class="fas fa-external-link-alt"></i></span>');
   });
   $('a[href^="mailto:"]').each(function() {
