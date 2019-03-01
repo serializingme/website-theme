@@ -1,6 +1,14 @@
 <span><i class="fas fa-calendar-alt"></i>&nbsp;</span>{{ .Date.Format "January 2, 2006" }}&nbsp;&nbsp;
+{{- .Scratch.Set "hastag" false -}}
+{{- range $name, $taxonony := .Site.Taxonomies.tags -}}
+  {{- if eq $name ($.Title | urlize) -}}
+    {{- $.Scratch.Set "hastag" true -}}
+  {{- end -}}
+{{- end -}}
+{{- if eq (.Scratch.Get "hastag") true -}}
 <br/>
 <span><i class="fas fa-tag"></i>&nbsp;</span><a href="{{ (printf "tags/%s/" (.Title | urlize)) | absURL }}">Related Posts</a>&nbsp;&nbsp;
+{{- end -}}
 {{- with .Params.repository -}}
 <br/>
 <span><i class="fas fa-code"></i>&nbsp;</span><a href="{{ . }}">Repository</a>
