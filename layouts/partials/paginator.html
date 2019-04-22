@@ -1,7 +1,7 @@
 <ul class="pagination justify-content-center mb-4">
 {{- if .Paginator.HasPrev -}}
   <li class="page-item">
-    <a href="{{ (printf "%spage/%d/" .URL .Paginator.Prev.PageNumber) | absURL }}" class="page-link"><span><i class="fas fa-chevron-left"></i>&nbsp;</span>Newer</a>
+    <a href="{{ printf "%spage/%d/" .Permalink .Paginator.Prev.PageNumber }}" class="page-link"><span><i class="fas fa-chevron-left"></i>&nbsp;</span>Newer</a>
   </li>
 {{- else -}}
   <li class="page-item disabled">
@@ -10,7 +10,7 @@
 {{- end -}}
 {{- if .Paginator.HasNext -}}
   <li class="page-item">
-    <a href="{{ (printf "%spage/%d/" .URL .Paginator.Next.PageNumber) | absURL }}" class="page-link">Older<span>&nbsp;<i class="fas fa-chevron-right"></i></span></a>
+    <a href="{{ printf "%spage/%d/" .Permalink .Paginator.Next.PageNumber }}" class="page-link">Older<span>&nbsp;<i class="fas fa-chevron-right"></i></span></a>
   </li>
 {{- else -}}
   <li class="page-item disabled">
