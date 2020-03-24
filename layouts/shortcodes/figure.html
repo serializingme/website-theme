@@ -3,7 +3,7 @@
 {{- $extension := path.Ext (.Get "image") -}}
 {{- if eq $extension ".svg" -}}
   <figure>
-{{ $image | readFile | safeHTML }}
+  {{ $image | readFile | safeHTML }}
 {{- with .Get "caption" -}}
     <figcaption class="figure-caption text-center">{{ . }}</figcaption>
 {{- end -}}

@@ -13,11 +13,13 @@
           <h1>Latest Posts</h1>
         </div>
         <div class="col-md-8">
-{{ range first 1 (where .Data.Pages "Type" "post") }}
-  {{ partial "post-summary.html" (dict "context" . "feature" true ) }}
-{{ end }}
-{{ range first 2 (after 1 (where .Data.Pages "Type" "post")) }}
-  {{ partial "post-summary.html" (dict "context" . "feature" false ) }}
+{{ range where .Site.Pages "Type" "post" }}
+  {{ range first 1 .Pages }}
+    {{ partial "post-summary.html" (dict "context" . "feature" true ) }}
+  {{ end }}
+  {{ range first 2 (after 1  .Pages) }}
+    {{ partial "post-summary.html" (dict "context" . "feature" false ) }}
+  {{ end }}
 {{ end }}
         </div>
       </div>
@@ -31,10 +33,12 @@
         <div class="col-md-4 my-4">
           <h1>Latest Projects</h1>
         </div>
-{{ range first 2 (where .Data.Pages "Type" "project") }}
+{{ range where .Site.Pages "Type" "project" }}
+  {{ range first 2 .Pages }}
         <div class="col-md-4">
-  {{ partial "project-summary.html" . }}
+    {{ partial "project-summary.html" . }}
         </div>
+  {{ end }}
 {{ end }}
       </div>
       <div class="row">
