@@ -10,7 +10,7 @@
   </figure>
 {{- else -}}
   <figure class="figure">
-    <a href="{{ .Get "image" | absURL }}" {{- if .Get "caption" -}}title="{{ .Get "caption" }}"{{- end -}}>
+    <a href="{{ .Get "image" | absURL }}" {{ if .Get "caption" }}title="{{ .Get "caption" }}"{{ end }}>
       <img class="figure-img img-fluid rounded" {{ if .Get "alternative" }}alt="{{ .Get "alternative" }}"{{ end }} src="{{- if .Get "thumbnail" -}}{{ .Get "thumbnail" | absURL }}{{- else -}}{{ .Get "image" | absURL }}{{- end -}}" />
     </a>
 {{- with .Get "caption" -}}

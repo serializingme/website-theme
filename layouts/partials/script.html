@@ -4,7 +4,8 @@
 <script src="{{ "js/fontawesome-brands.min.js" | absURL }}"></script>
 <script src="{{ "js/fontawesome.min.js" | absURL }}"></script>
 {{- if or .Params.timeline .Params.network -}}
-<script src="{{ "js/vis.min.js" | absURL }}"></script>
+<script src="{{ "js/moment.min.js" | absURL }}"></script>
+<script src="{{ "js/vis-data.min.js" | absURL }}"></script>
   {{- with .Params.timeline -}}
 <script src="{{ "js/vis-timeline-graph2d.min.js" | absURL }}"></script>
 <script>
