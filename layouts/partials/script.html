@@ -6,36 +6,33 @@
 {{- if or .Params.timeline .Params.network -}}
 <script src="{{ "js/moment.min.js" | absURL }}"></script>
 <script src="{{ "js/vis-data.min.js" | absURL }}"></script>
-  {{- with .Params.timeline -}}
+  {{ with .Params.timeline }} 
 <script src="{{ "js/vis-timeline-graph2d.min.js" | absURL }}"></script>
 <script>
   $(function() {
-    var items = new vis.DataSet([
-  {{- range . -}}
-    {{- if ne .type "background" -}}
+    {{ range . }}
+    new vis.Timeline(document.getElementById('{{ .id }}-vis'), new vis.DataSet([
+      {{ range (index $.Params .id) }}
+        {{- if ne .type "background" -}}
       { id: '{{ .id }}', start: '{{ .start }}', content: '{{ .title }}' },
-    {{- else -}}
+        {{- else -}}
       {id: '{{ .id }}', start: '{{ .start }}', end: '{{ .end }}', content: '{{ .title }}', type: '{{ .type }}', className: '{{ .className }}'},
-    {{- end -}}
-  {{- end -}}
-    ]);
-
-    var container = document.getElementById('disclosure-vis');
-    var options = {
+        {{- end -}}
+      {{- end -}}
+    ]), {
       editable: false
-    };
-
-    var timeline = new vis.Timeline(container, items, options);
+    });
+    {{ end }}
   });
 </script>
-  {{- end -}}
-  {{- with .Params.network -}}
+  {{ end }}
+  {{ with .Params.network }}
 <script src="{{ "js/vis-network.min.js" | absURL }}"></script>
 <script>
   $(function() {
   });
 </script>
-  {{- end -}}
+  {{ end }}
 {{- end -}}
 <script src="{{ "js/serializingme.min.js" | absURL }}"></script>
 {{- with .Site.Params.analytics -}}

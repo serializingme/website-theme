@@ -13,17 +13,19 @@
         <div class="text-justify">
 {{ .Content }}
 {{- with .Params.timeline -}}
-          <h3 id="disclosure-timeline">Disclosure Timeline</h3>
-          <ul>
   {{- range . -}}
-    {{- if ne .type "background" -}}
+          <h3 id="{{ .id }}-timeline">{{ .title | safeHTML }}</h3>
+          <ul>
+    {{- range (index $.Params .id) -}}
+      {{- if ne .type "background" -}}
             <li>
-      {{ .start }}:&nbsp;{{- if .content -}}{{ .content | safeHTML }}{{- else -}}{{ .title | safeHTML }}{{- end -}}
+        {{ .start }}:&nbsp;{{- if .content -}}{{ .content | safeHTML }}{{- else -}}{{ .title | safeHTML }}{{- end -}}
             </li>
+      {{- end -}}
     {{- end -}}
-  {{- end -}}
           </ul>
-          <div id="disclosure-vis"></div>
+          <div id="{{ .id }}-vis" class="pb-4"></div>
+  {{- end -}}
 {{- end -}}
         </div>
       </div>
