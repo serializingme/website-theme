@@ -1,9 +1,9 @@
 {{- if eq (.Get "class") "success" -}}
-<div class="alert alert-success"><span><i class="fas fa-check-circle"></i>&nbsp;</span>{{ .Inner }}</div>
+<div class="alert alert-success"><span><i class="fas fa-check-circle"></i>&nbsp;</span>{{ .Inner | markdownify }}</div>
 {{- else if eq (.Get "class") "warning" -}}
-<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>{{ .Inner }}</div>
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>{{ .Inner | markdownify }}</div>
 {{- else if eq (.Get "class") "danger" -}}
-<div class="alert alert-danger"><span><i class="fas fa-minus-circle"></i>&nbsp;</span>{{ .Inner }}</div>
+<div class="alert alert-danger"><span><i class="fas fa-minus-circle"></i>&nbsp;</span>{{ .Inner | markdownify }}</div>
 {{- else -}}
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>{{ .Inner }}</div>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>{{ .Inner | markdownify }}</div>
 {{- end -}}
