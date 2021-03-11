@@ -40,7 +40,7 @@ Default HTML tags.
   {{ with .Params.tags }}
     {{ $count := len . }}
     {{ if gt $count 0 }}
-<meta name="keywords" content="{{ range $index, $tag := . }}{{ $tag }}{{ if lt $index (sub $count 1) }}, {{ end }}{{ end }}" />
+<meta name="keywords" content="{{ range $index, $tag := . }}{{ $tag }}{{ if lt $index (sub $count 1) }},{{ end }}{{ end }}" />
     {{ end }}
   {{ end }}
 {{ end }}
@@ -89,7 +89,7 @@ Schema.org tags.
   {{ with .Params.tags }}
     {{ $count := len . }}
     {{ if gt $count 0 }}
-<meta itemprop="keywords" content="{{ range $index, $tag := . }}{{ $tag }}{{ if lt $index (sub $count 1) }}, {{ end }}{{ end }}" />
+<meta itemprop="keywords" content="{{ range $index, $tag := . }}{{ $tag }}{{ if lt $index (sub $count 1) }},{{ end }}{{ end }}" />
     {{ end }}
   {{ end }}
   {{ with .WordCount }}
