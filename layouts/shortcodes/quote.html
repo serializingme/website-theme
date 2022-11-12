@@ -1,6 +1,10 @@
-<blockquote class="blockquote">
-  <p class="ml-2 mr-2 mb-1 text-justify">{{ .Inner }}</p>
+<figure>
+  <blockquote class="blockquote">
+    <p>{{ .Inner }}</p>
+  </blockquote>
 {{- with .Get "cite" -}}
-  <footer class="blockquote-footer ml-2 mr-2"><cite title="{{ . }}">{{ . }}</cite></footer>
+  <figcaption class="blockquote-footer">
+    <cite title="{{ . }}">{{ . }}</cite>
+  </figcaption>
 {{- end -}}
-</blockquote>
+</figure>
