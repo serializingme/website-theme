@@ -1,6 +1,6 @@
 name = "SerializingMe"
 license = "GPLv3"
-licenselink = "https://github.com/serializingme/website-theme/blob/master/LICENSE.md"
+licenselink = "https://github.com/serializingme/website-theme/blob/master/LICENSE"
 description = "My website Hugo theme."
 homepage = "https://www.serializing.me/"
 tags = ["bootstrap", "jquery", "font-awesome", "responsive"]
