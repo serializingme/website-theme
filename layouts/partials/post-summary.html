@@ -8,11 +8,11 @@
         {{ .context.Title }}
     </h2>
 {{- if and (isset .context.Params "format") (or (eq .context.Params.format "quote") (eq .context.Params.format "status")) -}}
-    <div class="text-justify">
+    <div>
   {{ .context.Content }}
     </div>
 {{- else -}}
-    <div class="text-justify">
+    <div>
   {{ .context.Summary }}
   {{- if .context.Truncated -}}
       <a class="btn btn-primary" href="{{ .context.Permalink }}">Read More<span>&nbsp;<i class="fas fa-chevron-right"></i></span></a>
